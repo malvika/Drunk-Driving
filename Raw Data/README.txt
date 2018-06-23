@@ -1,1 +1,0 @@
-Data ideas that may be used 
