@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" class="gr__getbootstrap_com"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="https://getbootstrap.com/docs/3.3/favicon.ico">
+
+  <title>Drunk Driving Visualization</title>
+
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+
+  <!--D3 cdn-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
+
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="https://getbootstrap.com/docs/3.3/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="https://getbootstrap.com/docs/3.3/examples/navbar-fixed-top/navbar-fixed-top.css" rel="stylesheet">
+
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <script src="https://getbootstrap.com/docs/3.3/assets/js/ie-emulation-modes-warning.js"></script>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body data-gr-c-s-loaded="true">
+
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand active" href="index.html">DDV</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+        <ul class="nav navbar-nav">
+          <li><a href="#">Data</a></li>
+          <li><a href="#">Comparison</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plots <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Law Enforcement vs DUI</a></li>
+              <li><a href="#">Sunday Alcohol Sales vs # of Accidents</a></li>
+              <li><a href="#">Does Metro Closing Affect Accident Rate</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+  <div class="container">
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <h1 class="row text-center">Summary</h1>
+      <div>
+        <br><p>Question 1 - Would an increase in law enforcement workforce decrease DUIs?</p>
+
+          <h5>Find the correlation between law enforcement per capita and DUI's per capita.</h5>
+          
+          <h5>Law enforcement data was retrieved from Uniform Crime Reporting Data from FBI.GOV for the three years.</h5>
+          
+        <br><p>Question 2- Would prohibiting alcohol sales on Sundays decrease accidents?</p>
+
+          <h5>Find the correlation between Sunday Alcohol Sales (restricted, prohibited, local, or permitted) and # of accidents.</h5>
+          
+          <h5>Data for Sunday crashes caused by drunk drivers was found on the NHTSA's Fatality Analysis Reporting System (FARS).</h5>
+          
+        <br><p>Question 3- Does the rate of accidents go up once DC Metro closes?</p>
+
+          <h5>Using the crash data obtained from opendata.dc.gov, we will visualize the rate of accidents as metro is closing and after it is closed.</h5>
+          
+          <h5>We can also test to see if closing metro early for Safetrack increased accidents. We need to find the dates of Safetrack and the general hours of operation for metro.</h5>
+      </div>
+    </div>
+
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+  <script src="https://getbootstrap.com/docs/3.3/dist/js/bootstrap.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="https://getbootstrap.com/docs/3.3/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+</body>
+</html>
