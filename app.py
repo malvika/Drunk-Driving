@@ -3,6 +3,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 import os
+from flask_sqlalchemy import SQLAlchemy
 
 from flask import (Flask, jsonify, render_template, request, redirect)
 
@@ -10,19 +11,23 @@ from flask import (Flask, jsonify, render_template, request, redirect)
 app = Flask(__name__)
 
 # Database Setup
-dbfile = os.path.join('Data Set/drinkingdriving.sqlite')
-engine = create_engine(f"sqlite:///{dbfile}")
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///Dataset/drinkingdriving.sqlite"
 
-# reflect an existing database into a new model
-Base = automap_base()
-# reflect the tables
-Base.prepare(engine, reflect=True)
+db = SQLAlchemy(app)
 
-Crashes = Base.classes.CrashesDC
-Police = Base.classes.PoliceperCapita
-Sundays = Base.classes.Sundays
+# Define our classes
 
-session = Session(engine)
+
+# # reflect an existing database into a new model
+# Base = automap_base()
+# # reflect the tables
+# Base.prepare(engine, reflect=True)
+
+# Crashes = Base.classes.CrashesDC
+# Police = Base.classes.PoliceperCapita
+# Sundays = Base.classes.Sundays
+
+# session = Session(engine)
 
 @app.route("/")
 def index():
@@ -30,7 +35,8 @@ def index():
 
 @app.route("/police")
 def policeroute():
-    return render_template('index.html')
+
+    return 
 
 
 

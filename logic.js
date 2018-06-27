@@ -1,4 +1,4 @@
-function createMap(data_2012) {
+function createMap() {
 
     // Define streetmap and darkmap layers
     var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" +
@@ -11,7 +11,7 @@ function createMap(data_2012) {
   
     // Create overlay object to hold our overlay layer
     var overlayMaps = {
-      Crash_data: data_2012
+      Crash_data:
     };
   
     // Create our map, giving it the streetmap and earthquakes layers to display on load
@@ -20,7 +20,7 @@ function createMap(data_2012) {
         37.09, -95.71
       ],
       zoom: 10,
-      layers: [streetmap, Crash_data]
+      layers: [streetmap, ]
     });
   
     // Create a layer control
