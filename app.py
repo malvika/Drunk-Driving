@@ -4,10 +4,13 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 import os
 
-from flask import Flask, jsonify, render_template
+from flask import (Flask, jsonify, render_template, request, redirect)
+
+# Flask Setup
 app = Flask(__name__)
 
-dbfile = os.path.join('drinkingdriving.sqlite')
+# Database Setup
+dbfile = os.path.join('Data Set/drinkingdriving.sqlite')
 engine = create_engine(f"sqlite:///{dbfile}")
 
 # reflect an existing database into a new model
