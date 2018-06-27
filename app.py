@@ -59,7 +59,6 @@ class LawEnforcement(db.Model):
 # Flask Routes
 #################################################
 
-
 @app.route("/")
 def home():
     """Render Home Page."""
