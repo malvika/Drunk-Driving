@@ -20,6 +20,9 @@
   <!-- Our CSS -->
   <link rel="stylesheet" type="text/css" href="style.css">
 
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
   <!-- Bootstrap core CSS -->
   <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -58,13 +61,9 @@
         <ul class="nav navbar-nav">
           <li><a href="#">Data</a></li>
           <li><a href="#">Comparison</a></li>
+          <li><a href="/barchart">Bar Chart</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plots <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Law Enforcement vs DUI</a></li>
-              <li><a href="#">Sunday Alcohol Sales vs # of Accidents</a></li>
-              <li><a href="#">Does Metro Closing Affect Accident Rate</a></li>
-            </ul>
           </li>
         </ul>
       </div><!--/.nav-collapse -->
@@ -72,42 +71,71 @@
   </nav>
   <div class="container">
     <!-- Main component for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <h1 class="row text-center">Summary</h1>
-      <div>
-        <br><p>Question 1 - Would an increase in law enforcement workforce decrease DUIs?</p>
 
-          <h5>Find the correlation between law enforcement per capita and DUI's per capita.</h5>
-          
-          <h5>Law enforcement data was retrieved from Uniform Crime Reporting Data from FBI.GOV for the three years.</h5>
-          
-        <br><p>Question 2- Would prohibiting alcohol sales on Sundays decrease accidents?</p>
-
-          <h5>Find the correlation between Sunday Alcohol Sales (restricted, prohibited, local, or permitted) and # of accidents.</h5>
-          
-          <h5>Data for Sunday crashes caused by drunk drivers was found on the NHTSA's Fatality Analysis Reporting System (FARS).</h5>
-          
-        <br><p>Question 3- Does the rate of accidents go up once DC Metro closes?</p>
-
-          <h5>Using the crash data obtained from opendata.dc.gov, we will visualize the rate of accidents as metro is closing and after it is closed.</h5>
-          
-          <h5>We can also test to see if closing metro early for Safetrack increased accidents. We need to find the dates of Safetrack and the general hours of operation for metro.</h5>
-      </div>
-    </div>
-  </div>
-  <div class="container">
+    <!-- row -->
     <div class="row">
-      <div class="contanier">
-          <div class="col-md-6">
 
-          </div>
+      <!-- column -->
+      <div class="col s12 m6">
+        <div class="card">
+            <canvas id="polar-chart" width="800" height="450"></canvas>
+        </div>
       </div>
-      <div class="container">
-          <div class="col-md-6">
-            
+
+      <!-- column -->
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Card Title</span>
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
           </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href="#">This is a link</a>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div class="row">
+        <div id="plot"></div>
+    </div>
+
+    <!-- row -->
+    <div class="row">
+
+      <!-- column -->
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Card Title</span>
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- column -->
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Card Title</span>
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- Bootstrap core JavaScript
@@ -119,6 +147,49 @@
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <script src="https://getbootstrap.com/docs/3.3/assets/js/ie10-viewport-bug-workaround.js"></script>
 
+  <!-- Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+
+  <!-- Plotly & Crashes.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="{{ url_for('static', filename='test.js') }}"></script>
+
+  <!-- Chart.js Import -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+  <script>
+
+   $.get("http://localhost:5000/sunday", (response) => {
+
+     let laws = []
+     let fatalities = []
+
+     response.forEach(item => {
+       laws.push(item[0])
+       fatalities.push(item[1])
+     })
+
+     new Chart(document.getElementById("polar-chart"), {
+        type: 'polarArea',
+        data: {
+          labels: laws,
+          datasets: [
+            {
+              label: "Fatality Rate",
+              backgroundColor: ["#37a2eb", "#fe6383", "#4ac1c0", "#ffcd56"],
+              data: fatalities
+            }
+          ]
+        },
+        options: {
+          title: {
+            display: true,
+            text: 'Fatality Rates by Laws on Sunday'
+          }
+        }
+    })
+  })
+  </script>
 
 </body>
 </html>
