@@ -14,7 +14,7 @@
 6. Use JavaScript libraries to create visualizations
 5. Use front end and back end techniques to present dashboard of results
 
-####Topics to Explore:
+#### Topics to Explore:
 ##### Question 1 - Would an increase in law enforcement workforce decrease DUIs?
 
 Find the correlation between law enforcement per capita and DUI's per capita.
