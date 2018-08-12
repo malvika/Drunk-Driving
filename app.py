@@ -1,3 +1,4 @@
+## Create dependencies
 import datetime as dt
 import pandas as pd
 from sqlalchemy import func
@@ -99,9 +100,6 @@ def crash_data():
     #
     # return jsonify(results)
 
-
-
-
 @app.route("/police")
 def police_data():
     """test"""
@@ -118,9 +116,9 @@ def police_data():
         police_data["Police"] = result[1]
         police_data["Fatalities"] = result[2]
         police_data["DUI"] = result[3]
-    
+
     df = pd.DataFrame(results, columns=['State', 'Police', 'Fatalities', 'DUI'])
-    
+
     return jsonify(df.to_dict(orient='records'))
 
 @app.route("/sunday")
