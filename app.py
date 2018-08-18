@@ -25,7 +25,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///Datasets/drinkingdriving.sqli
 
 db = SQLAlchemy(app)
 
-
+# Connect CrashesDC table
 class Danger(db.Model):
     __tablename__ = 'CrashesDC'
 
@@ -37,9 +37,8 @@ class Danger(db.Model):
     REPORT_DATE = db.Column(db.Text)
     REPORT_TIME = db.Column(db.Text)
 
-
-    def __repr__(self):
-        return '<CrashesDC %r>' % (self.name)
+    # def __repr__(self):
+    #     return '<CrashesDC %r>' % (self.name)
 
 class Sunday(db.Model):
     __tablename__ = 'Sundays'
@@ -47,10 +46,8 @@ class Sunday(db.Model):
     SundayLaw = db.Column(db.Text, primary_key=True)
     Fatality = db.Column(db.Text)
     DUI = db.Column(db.Text)
-
-    def __repr__(self):
-        return '<Sundays %r>' % (self.name)
-
+    # def __repr__(self):
+    #     return '<Sundays %r>' % (self.name)
 
 class LawEnforcement(db.Model):
     __tablename__ = 'PoliceperCapita'
@@ -60,19 +57,20 @@ class LawEnforcement(db.Model):
     Fatalities = db.Column(db.Text)
     DUI = db.Column(db.Text)
 
-    def __repr__(self):
-        return '<PoliceperCapita %r>' % (self.name)
+    # def __repr__(self):
+    #     return '<PoliceperCapita %r>' % (self.name)
 
 #################################################
 # Flask Routes
 #################################################
 
+# Connection to home page of index.html
 @app.route("/")
 def home():
     """Render Home Page."""
     return render_template("index.html")
 
-
+# Crash db API
 @app.route("/crash")
 def crash_data():
     sel = [func.strftime("%H", Danger.TIMESTAMP), func.count(Danger.TIMESTAMP)]
