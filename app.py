@@ -1,4 +1,4 @@
-## Create dependencies
+# Create dependencies
 import datetime as dt
 import pandas as pd
 from sqlalchemy import func
@@ -14,6 +14,8 @@ from flask_sqlalchemy import SQLAlchemy
 #################################################
 # Flask Setup
 #################################################
+
+# Create an instance of Flask for the web app
 app = Flask(__name__)
 
 #################################################
@@ -28,7 +30,6 @@ db = SQLAlchemy(app)
 # Connect CrashesDC table
 class Danger(db.Model):
     __tablename__ = 'CrashesDC'
-
     TIMESTAMP = db.Column(db.Text, primary_key=True)
     LATITUDE = db.Column(db.Text)
     LONGITUDE = db.Column(db.Text)
@@ -37,18 +38,22 @@ class Danger(db.Model):
     REPORT_DATE = db.Column(db.Text)
     REPORT_TIME = db.Column(db.Text)
 
-    # def __repr__(self):
-    #     return '<CrashesDC %r>' % (self.name)
+    # returns representation of object in database
+    def __repr__(self):
+        return '<CrashesDC %r>' % (self.TIMESTAMP)
 
+# Connect Sundays table
 class Sunday(db.Model):
     __tablename__ = 'Sundays'
-
     SundayLaw = db.Column(db.Text, primary_key=True)
     Fatality = db.Column(db.Text)
     DUI = db.Column(db.Text)
-    # def __repr__(self):
-    #     return '<Sundays %r>' % (self.name)
 
+    # returns representation of object in database
+    def __repr__(self):
+        return '<Sundays %r>' % (self.SundayLaw)
+
+# Connect PoliceperCapita table
 class LawEnforcement(db.Model):
     __tablename__ = 'PoliceperCapita'
     Year = db.Column(db.Text)
@@ -57,8 +62,9 @@ class LawEnforcement(db.Model):
     Fatalities = db.Column(db.Text)
     DUI = db.Column(db.Text)
 
-    # def __repr__(self):
-    #     return '<PoliceperCapita %r>' % (self.name)
+    # returns representation of object in database
+    def __repr__(self):
+        return '<PoliceperCapita %r>' % (self.Year)
 
 #################################################
 # Flask Routes
@@ -98,6 +104,7 @@ def crash_data():
     #
     # return jsonify(results)
 
+# Police db API
 @app.route("/police")
 def police_data():
     """test"""
@@ -119,6 +126,7 @@ def police_data():
 
     return jsonify(df.to_dict(orient='records'))
 
+# Sunday db API
 @app.route("/sunday")
 def sunday_data():
     """test"""
@@ -137,5 +145,6 @@ def sunday_data():
 
     return jsonify(results)
 
+# Execution of the script. python assigns main to the script.Debug to print out possible errors
 if __name__ == '__main__':
     app.run(debug=True)
