@@ -32,3 +32,7 @@ Data for Sunday crashes caused by drunk drivers was found on the NHTSA's Fatalit
 Using the crash data obtained from opendata.dc.gov, we will visualize the rate of accidents as metro is closing and after it is closed.
 
 We can also test to see if closing metro early for Safetrack increased accidents. We need to find the dates of Safetrack and the general hours of operation for metro.
+
+
+#### Output of Project
+![output.png](output.png)
